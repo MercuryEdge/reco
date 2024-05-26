@@ -66,7 +66,8 @@ module.exports = {
     "sidebar": {
       "/docs/synology/": [
         "frps",
-        "obs"
+        "obs",
+        "oss"
       ]
     },
     "type": "blog",
