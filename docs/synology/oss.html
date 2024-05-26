@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Nginx 反向代理 MinIO | Mercury</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/reco/favicon.ico">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/reco/assets/css/0.styles.ff94424f.css" as="style"><link rel="preload" href="/reco/assets/js/app.b872648b.js" as="script"><link rel="preload" href="/reco/assets/js/3.d15f40c5.js" as="script"><link rel="preload" href="/reco/assets/js/1.a6ea1bc9.js" as="script"><link rel="preload" href="/reco/assets/js/15.5738f038.js" as="script"><link rel="prefetch" href="/reco/assets/js/10.0e5b470e.js"><link rel="prefetch" href="/reco/assets/js/11.71b863b7.js"><link rel="prefetch" href="/reco/assets/js/12.f04deb41.js"><link rel="prefetch" href="/reco/assets/js/13.02e8a1f5.js"><link rel="prefetch" href="/reco/assets/js/14.8c3b6ccb.js"><link rel="prefetch" href="/reco/assets/js/4.f58e3629.js"><link rel="prefetch" href="/reco/assets/js/5.f5b616f4.js"><link rel="prefetch" href="/reco/assets/js/6.fd2d29b8.js"><link rel="prefetch" href="/reco/assets/js/7.91be8b9a.js"><link rel="prefetch" href="/reco/assets/js/8.259408ce.js"><link rel="prefetch" href="/reco/assets/js/9.60c2f058.js">
+    <link rel="stylesheet" href="/reco/assets/css/0.styles.ff94424f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>Mercury</h3> <p class="description" data-v-59e6cb88></p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>Mercury</span>
+          
+        <span data-v-59e6cb88>2023 - </span>
+        2024
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/reco/" class="home-link router-link-active"><img src="/reco/logo.png" alt="Mercury" class="logo"> <span class="site-name">Mercury</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/reco/" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/reco/categories/群晖/" class="nav-link"><i class="undefined"></i>
+  群晖
+</a></li><li class="dropdown-item"><!----> <a href="/reco/categories/Info/" class="nav-link"><i class="undefined"></i>
+  Info
+</a></li></ul></div></div><div class="nav-item"><a href="/reco/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/reco/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间线
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      文档
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/reco/docs/synology/frps.html" class="nav-link"><i class="undefined"></i>
+  群辉
+</a></li><li class="dropdown-item"><!----> <a href="/reco/docs/ref/ref.html" class="nav-link"><i class="undefined"></i>
+  参考
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      关于
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/reco/docs/about/about.html" class="nav-link"><i class="iconfont reco-faq"></i>
+  关于
+</a></li><li class="dropdown-item"><!----> <a href="https://github.com/MercuryEdge" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/reco/avatar.png" alt="author-avatar" class="personal-img" data-v-1fad0c41> <h3 class="name" data-v-1fad0c41>
+    Mercury
+  </h3> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>5</h3> <h6 data-v-1fad0c41>文章</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>5</h3> <h6 data-v-1fad0c41>标签</h6></div></div> <ul class="social-links" data-v-1fad0c41></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/reco/" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/reco/categories/群晖/" class="nav-link"><i class="undefined"></i>
+  群晖
+</a></li><li class="dropdown-item"><!----> <a href="/reco/categories/Info/" class="nav-link"><i class="undefined"></i>
+  Info
+</a></li></ul></div></div><div class="nav-item"><a href="/reco/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/reco/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间线
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      文档
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/reco/docs/synology/frps.html" class="nav-link"><i class="undefined"></i>
+  群辉
+</a></li><li class="dropdown-item"><!----> <a href="/reco/docs/ref/ref.html" class="nav-link"><i class="undefined"></i>
+  参考
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      关于
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/reco/docs/about/about.html" class="nav-link"><i class="iconfont reco-faq"></i>
+  关于
+</a></li><li class="dropdown-item"><!----> <a href="https://github.com/MercuryEdge" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><a href="/reco/docs/synology/frps.html" class="sidebar-link">FRPS + FRPC 组网配置文件</a></li><li><a href="/reco/docs/synology/obs.html" class="sidebar-link">OBS + WHIP搭建直播网页</a></li><li><a href="/reco/docs/synology/oss.html" aria-current="page" class="active sidebar-link">Nginx 反向代理 MinIO</a></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>Nginx 反向代理 MinIO</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>Mercury</span>
+          
+        <span data-v-59e6cb88>2023 - </span>
+        2024
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">Nginx 反向代理 MinIO</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>Mercury</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>2024/5/26</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>对象存储</span></i></div></div> <div class="theme-reco-content content__default"><div class="custom-block tip"><p class="title"></p><p>Docker容器Tag</p> <div class="language- extra-class"><pre><code>MinIO/MinIO
+
+nginx
+</code></pre></div></div><h1 id="部署-minio"><a href="#部署-minio" class="header-anchor">#</a> 部署 MinIO</h1> <p>MinIO默认后台管理界面: <strong><a href="http://0.0.0.0:9900" target="_blank" rel="noopener noreferrer">http://0.0.0.0:9900<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></strong></p> <p>MinIO API: <strong><a href="http://0.0.0.0:9000" target="_blank" rel="noopener noreferrer">http://0.0.0.0:9000<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></strong></p> <p>例如下载<code>oss bucket</code>中的<code>demo.pptx</code>文件</p> <div class="language- extra-class"><pre><code>http://0.0.0.0:9000/oss/demo.pptx
+</code></pre></div><div class="custom-block danger"><p class="title"></p><p>由于API接口为http请求，在https页面中不可用.</p> <p>因此使用Nginx进行反向代理，使得可以在https页面发起https请求访问MinIO.</p></div><h1 id="nginx-配置步骤"><a href="#nginx-配置步骤" class="header-anchor">#</a> Nginx 配置步骤</h1> <h2 id="配置一个-nginx-容器"><a href="#配置一个-nginx-容器" class="header-anchor">#</a> 配置一个 Nginx 容器</h2> <h3 id="映射容器端口"><a href="#映射容器端口" class="header-anchor">#</a> 映射容器端口</h3> <table><thead><tr><th>本地端口</th> <th>容器端口</th> <th>类型</th></tr></thead> <tbody><tr><td>9443</td> <td>443</td> <td>tcp</td></tr> <tr><td>9880</td> <td>80</td> <td>tcp</td></tr></tbody></table> <h3 id="映射容器目录"><a href="#映射容器目录" class="header-anchor">#</a> 映射容器目录</h3> <table><thead><tr><th>本地文件夹</th> <th>容器文件夹</th> <th>类型</th></tr></thead> <tbody><tr><td>docker/nginx-oss</td> <td>/etc/nginx</td> <td>rw</td></tr></tbody></table> <h2 id="准备一个域名-并下载ssl证书"><a href="#准备一个域名-并下载ssl证书" class="header-anchor">#</a> 准备一个域名，并下载SSL证书</h2> <div class="custom-block tip"><p class="title"></p><h3 id="域名-oss-demo-cloud"><a href="#域名-oss-demo-cloud" class="header-anchor">#</a> 域名: oss.demo.cloud</h3> <h3 id="证书-oss-demo-cloud-pem"><a href="#证书-oss-demo-cloud-pem" class="header-anchor">#</a> 证书: oss-demo-cloud.pem</h3> <h3 id="密钥-oss-demo-cloud-key"><a href="#密钥-oss-demo-cloud-key" class="header-anchor">#</a> 密钥: oss-demo-cloud.key</h3></div><h2 id="配置-nginx-的配置文件"><a href="#配置-nginx-的配置文件" class="header-anchor">#</a> 配置 Nginx 的配置文件</h2> <h3 id="进入-docker-nginx-oss-目录"><a href="#进入-docker-nginx-oss-目录" class="header-anchor">#</a> 进入 docker/nginx-oss 目录</h3> <div class="language- extra-class"><pre><code>/etc/nginx/                                                                                                                                
+|-- fastcgi_params                                                              
+|-- mime.types                                                                  
+|-- nginx.conf                                                                  
+|-- scgi_params                                                                 
+`-- uwsgi_params 
+</code></pre></div><h3 id="创建-cert-目录-并将证书及密钥放入-cert-目录中"><a href="#创建-cert-目录-并将证书及密钥放入-cert-目录中" class="header-anchor">#</a> 创建 cert 目录，并将证书及密钥放入 cert 目录中</h3> <h3 id="创建-conf-d-目录-并创建-default-conf-文件-编写配置"><a href="#创建-conf-d-目录-并创建-default-conf-文件-编写配置" class="header-anchor">#</a> 创建 conf.d 目录，并创建 default.conf 文件，编写配置</h3> <div class="language- extra-class"><pre><code>server {
+listen       80;
+listen  [::]:80;
+listen 443 ssl;
+server_name oss.demo.cloud;
+ssl_certificate /etc/nginx/cert/oss-demo-cloud.pem;
+ssl_certificate_key /etc/nginx/cert/oss-demo-cloud.key;
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
+ssl_prefer_server_ciphers on;
+
+location / {
+    root   /usr/share/nginx/html;
+    index  index.html index.htm;
+    proxy_pass http://oss.demo.cloud:9000;
+    proxy_set_header  Host       $host;
+    proxy_set_header  X-Real-IP    $remote_addr;
+    proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+}
+
+error_page  404              /404.html;
+
+error_page  500 502 503 504  /50x.html;
+location = /50x.html {
+    root   /usr/share/nginx/html;
+    }
+}
+</code></pre></div><h3 id="完成后的目录结构如下"><a href="#完成后的目录结构如下" class="header-anchor">#</a> 完成后的目录结构如下</h3> <div class="language- extra-class"><pre><code>/etc/nginx/                                                                     
+|-- cert                                                                        
+|   |-- oss-demo-cloud.key                                                                 
+|   `-- oss-demo-cloud.pem                                                                 
+|-- conf.d                                                                      
+|   `-- default.conf                                                            
+|-- fastcgi_params                                                              
+|-- mime.types                                                                  
+|-- nginx.conf                                                                  
+|-- scgi_params                                                                 
+`-- uwsgi_params 
+</code></pre></div><h3 id="运行-nginx-容器"><a href="#运行-nginx-容器" class="header-anchor">#</a> 运行 Nginx 容器</h3> <h2 id="测试在-https-页面中使用-minio-访问存储对象"><a href="#测试在-https-页面中使用-minio-访问存储对象" class="header-anchor">#</a> 测试在 https 页面中使用 MinIO 访问存储对象</h2> <h3 id="新建一个-html-页面-设置-video-标签的-src-为-oss-中的文件"><a href="#新建一个-html-页面-设置-video-标签的-src-为-oss-中的文件" class="header-anchor">#</a> 新建一个 Html 页面，设置 video 标签的 src 为 OSS 中的文件</h3> <div class="language- extra-class"><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;OSS测试&lt;/title&gt;
+&lt;/head&gt;
+&lt;style&gt;
+	body{
+		margin:0;
+		padding:0;
+		background-color:black;
+	}
+	video{
+		width:100vw;
+		height:100vh;
+	}
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;video src=&quot;https://oss.demo.cloud:9443/oss/test.mp4&quot; muted autoplay&gt;Video For Test&lt;/video&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div><h3 id="如果能正常播放-则配置成功"><a href="#如果能正常播放-则配置成功" class="header-anchor">#</a> 如果能正常播放，则配置成功.</h3></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">更新时间: </span> <span class="time">2024/5/26 17:12:56</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/reco/docs/synology/obs.html" class="prev">
+          OBS + WHIP搭建直播网页
+        </a></span> <!----></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#配置一个-nginx-容器" class="sidebar-link reco-side-配置一个-nginx-容器" data-v-b57cc07c>配置一个 Nginx 容器</a></li><li class="level-3" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#映射容器端口" class="sidebar-link reco-side-映射容器端口" data-v-b57cc07c>映射容器端口</a></li><li class="level-3" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#映射容器目录" class="sidebar-link reco-side-映射容器目录" data-v-b57cc07c>映射容器目录</a></li><li class="level-2" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#准备一个域名-并下载ssl证书" class="sidebar-link reco-side-准备一个域名-并下载ssl证书" data-v-b57cc07c>准备一个域名，并下载SSL证书</a></li><li class="level-3" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#域名-oss-demo-cloud" class="sidebar-link reco-side-域名-oss-demo-cloud" data-v-b57cc07c>域名: oss.demo.cloud</a></li><li class="level-3" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#证书-oss-demo-cloud-pem" class="sidebar-link reco-side-证书-oss-demo-cloud-pem" data-v-b57cc07c>证书: oss-demo-cloud.pem</a></li><li class="level-3" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#密钥-oss-demo-cloud-key" class="sidebar-link reco-side-密钥-oss-demo-cloud-key" data-v-b57cc07c>密钥: oss-demo-cloud.key</a></li><li class="level-2" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#配置-nginx-的配置文件" class="sidebar-link reco-side-配置-nginx-的配置文件" data-v-b57cc07c>配置 Nginx 的配置文件</a></li><li class="level-3" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#进入-docker-nginx-oss-目录" class="sidebar-link reco-side-进入-docker-nginx-oss-目录" data-v-b57cc07c>进入 docker/nginx-oss 目录</a></li><li class="level-3" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#创建-cert-目录-并将证书及密钥放入-cert-目录中" class="sidebar-link reco-side-创建-cert-目录-并将证书及密钥放入-cert-目录中" data-v-b57cc07c>创建 cert 目录，并将证书及密钥放入 cert 目录中</a></li><li class="level-3" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#创建-conf-d-目录-并创建-default-conf-文件-编写配置" class="sidebar-link reco-side-创建-conf-d-目录-并创建-default-conf-文件-编写配置" data-v-b57cc07c>创建 conf.d 目录，并创建 default.conf 文件，编写配置</a></li><li class="level-3" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#完成后的目录结构如下" class="sidebar-link reco-side-完成后的目录结构如下" data-v-b57cc07c>完成后的目录结构如下</a></li><li class="level-3" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#运行-nginx-容器" class="sidebar-link reco-side-运行-nginx-容器" data-v-b57cc07c>运行 Nginx 容器</a></li><li class="level-2" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#测试在-https-页面中使用-minio-访问存储对象" class="sidebar-link reco-side-测试在-https-页面中使用-minio-访问存储对象" data-v-b57cc07c>测试在 https 页面中使用 MinIO 访问存储对象</a></li><li class="level-3" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#新建一个-html-页面-设置-video-标签的-src-为-oss-中的文件" class="sidebar-link reco-side-新建一个-html-页面-设置-video-标签的-src-为-oss-中的文件" data-v-b57cc07c>新建一个 Html 页面，设置 video 标签的 src 为 OSS 中的文件</a></li><li class="level-3" data-v-b57cc07c><a href="/reco/docs/synology/oss.html#如果能正常播放-则配置成功" class="sidebar-link reco-side-如果能正常播放-则配置成功" data-v-b57cc07c>如果能正常播放，则配置成功.</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/reco/assets/js/app.b872648b.js" defer></script><script src="/reco/assets/js/3.d15f40c5.js" defer></script><script src="/reco/assets/js/1.a6ea1bc9.js" defer></script><script src="/reco/assets/js/15.5738f038.js" defer></script>
+  </body>
+</html>
